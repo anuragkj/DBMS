@@ -141,10 +141,10 @@ INSERT INTO t VALUES (17);
 END CASE;
 END; //
 delimiter ;
-CALL p17(0);
+CALL p17(-1);
 select * from t;
 
-CALL p17(-1);
+CALL p17(0);
 select * from t;
 
 CALL p17(2);
