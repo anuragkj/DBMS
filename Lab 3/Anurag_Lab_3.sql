@@ -73,30 +73,30 @@ DESC SALESMAN;
 DESC CUSTOMER;
 DESC ORDERS;
 
-#Query 1
+#1. Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city
 SELECT CUSTOMER.CUST_NAME,
 SALESMAN.NAME, SALESMAN.CITY
 FROM SALESMAN, CUSTOMER
 WHERE SALESMAN.CITY = CUSTOMER.CITY;
 
-#Query 2
+#2. Query Write a SQL statement to find the names of all customers along with the salesmen who works for them.
 SELECT CUSTOMER.CUST_NAME, SALESMAN.NAME
 FROM CUSTOMER,SALESMAN
 WHERE SALESMAN.SALESMAN_ID = CUSTOMER.SALESMAN_ID;
 
-#Query 3
+#3. Write a SQL statement to display all those orders by the customers not located in the same cities where their salesmen live.
 SELECT ORD_NO, CUST_NAME, ORDERS.CUSTOMER_ID, ORDERS.SALESMAN_ID
 FROM SALESMAN, CUSTOMER, ORDERS
 WHERE CUSTOMER.CITY <> SALESMAN.CITY
 AND ORDERS.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
 AND ORDERS.SALESMAN_ID = SALESMAN.SALESMAN_ID;
 
-#Query 4
+#4. Write a SQL statement that finds out each order number followed by the name of the customers who made the order.
 SELECT ORD_NO, CUST_NAME
 FROM ORDERS, CUSTOMER
 WHERE CUSTOMER.CUSTOMER_ID = ORDERS.CUSTOMER_ID;
 
-#Query 5
+#5. Write a SQL statement that sorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city.
 SELECT CUSTOMER.CUST_NAME AS "CUSTOMER",
 CUSTOMER.GRADE AS "GRADE",ORDERS.ORD_NO AS "ORDER NO."
 FROM ORDERS, SALESMAN, CUSTOMER
@@ -105,14 +105,15 @@ AND ORDERS.SALESMAN_ID = SALESMAN.SALESMAN_ID
 AND SALESMAN.CITY IS NOT NULL
 AND CUSTOMER.GRADE IS NOT NULL;
 
-#Query 6
+#6. Write a query that produces all customers with their name, city, salesman and commission, who served by a salesman and the salesman works at a rate of the commission within 12% to 14%.
 SELECT CUSTOMER.CUST_NAME AS "NAME", CUSTOMER.CITY AS "CITY", 
 SALESMAN.NAME AS "SALESMAN", SALESMAN.COMMISSION AS "COMMISSION"
 FROM CUSTOMER, SALESMAN
 WHERE SALESMAN.SALESMAN_ID = CUSTOMER.SALESMAN_ID
 AND SALESMAN.COMMISSION BETWEEN 0.12 AND 0.14;
 
-#Query 7
+#7. Write a SQL statement that produces all orders with the order number, customer name, commission rate and earned commission amount for those customers who carry their grade is 200 or more and served by an existing salesman.
+
 SELECT ORD_NO, CUST_NAME, COMMISSION AS "COMMISSION RATE",
 PURCH_AMT*COMMISSION AS "EARNED COMMISSION"
 FROM SALESMAN,ORDERS,CUSTOMER
@@ -120,26 +121,26 @@ WHERE ORDERS.CUSTOMER_ID = CUSTOMER.CUSTOMER_ID
 AND ORDERS.SALESMAN_ID = SALESMAN.SALESMAN_ID
 AND CUSTOMER.GRADE>=200;
 
-#Query 8
+#8. rite a query to display all customers with a grade above 100.
 SELECT * FROM CUSTOMER 
 WHERE GRADE > 100;
 
-#Query 9
+#9. Write a query statement to display all customers in New York who have a grade value above 100.
 SELECT * FROM CUSTOMER 
 WHERE CITY = "NEW YORK" 
 AND GRADE > 100;
 
-#Query 10
+#10. Write a SQL statement to display all the customers, who are either belongs to the city New York or not had a grade above 100.
 SELECT * FROM CUSTOMER 
 WHERE CITY = "NEW YORK"
 OR GRADE <= 100;
 
-#Query 11 
+#11. Write a SQL query to display those customers who are neither belongs to the city New York nor grade value is more than 100.
 SELECT * FROM CUSTOMER 
 WHERE CITY != "NEW YORK"
 AND GRADE <= 100;
 
-#Query 12
+#12. Write a SQL statement to display either those orders which are not issued on date 2012-09-10 and issued by the salesman whose ID is 5005 and below or those orders which purchase amount is 1000.00 and below.
 SELECT * FROM ORDERS
 WHERE
 (PURCH_AMT <= 1000.0)
